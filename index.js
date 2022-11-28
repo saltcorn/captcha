@@ -8,9 +8,6 @@ const {
   style,
   text_attr,
 } = require("@saltcorn/markup/tags");
-const { features } = require("@saltcorn/data/db/state");
-const File = require("@saltcorn/data/models/file");
-const headers = [];
 const { compareSync, hashSync } = require("bcryptjs");
 const svgCaptcha = require("svg-captcha");
 module.exports = {
@@ -36,18 +33,12 @@ module.exports = {
         return v;
       },
       fieldviews: {
-        SvgCaptcha: {
+        SvgCaptchaImage: {
           isEdit: true,
-          run: (nm, v, attrs, cls, required, field) => {
+          run: (nm) => {
             var captcha = svgCaptcha.create();
             return (
               captcha.data +
-              input({
-                type: "text",
-                class: "form-control w-unset",
-                name: text_attr(nm),
-                id: `input${text_attr(nm)}`,
-              }) +
               input({
                 type: "hidden",
                 name: text_attr(nm) + "__hash",
@@ -55,6 +46,17 @@ module.exports = {
                 value: hashSync(captcha.text, 10),
               })
             );
+          },
+        },
+        SvgCaptchaInput: {
+          isEdit: true,
+          run: (nm, v, attrs, cls, required, field) => {
+            return input({
+              type: "text",
+              class: "form-control",
+              name: text_attr(nm),
+              id: `input${text_attr(nm)}`,
+            });
           },
         },
       },

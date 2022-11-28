@@ -5,6 +5,7 @@ const {
   script,
   domReady,
   textarea,
+  p,
   style,
   text_attr,
 } = require("@saltcorn/markup/tags");
@@ -61,12 +62,22 @@ module.exports = {
         SvgCaptchaInput: {
           isEdit: true,
           run: (nm, v, attrs, cls, required, field) => {
-            return input({
-              type: "text",
-              class: "form-control",
-              name: text_attr(nm),
-              id: `input${text_attr(nm)}`,
-            });
+            console.log({ v });
+            const errorFeedback =
+              typeof v === "string"
+                ? p(
+                    { class: "text-danger" },
+                    attrs?.error_msg || "Incorrect value"
+                  )
+                : "";
+            return (
+              input({
+                type: "text",
+                class: "form-control",
+                name: text_attr(nm),
+                id: `input${text_attr(nm)}`,
+              }) + errorFeedback
+            );
           },
         },
       },

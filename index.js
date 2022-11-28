@@ -62,7 +62,6 @@ module.exports = {
         SvgCaptchaInput: {
           isEdit: true,
           run: (nm, v, attrs, cls, required, field) => {
-            console.log({ v });
             const errorFeedback =
               typeof v === "string"
                 ? p(

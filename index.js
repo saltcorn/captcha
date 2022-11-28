@@ -24,11 +24,21 @@ module.exports = {
         const cmp = compareSync(rec[name], rec[name + "__hash"]);
         return cmp;
       },
-      attributes: [],
-      validate: () => (x) => {
-        if (!x) return { error: "Incorrect Captcha" };
-        else return true;
-      },
+      attributes: [
+        {
+          name: "error_msg",
+          label: "Error message",
+          sublabel:
+            "This is shown to the user if the valued entered does not match.",
+          type: "String",
+        },
+      ],
+      validate:
+        ({ error_msg }) =>
+        (x) => {
+          if (!x) return { error: error_msg };
+          else return true;
+        },
       read: (v) => {
         return v;
       },

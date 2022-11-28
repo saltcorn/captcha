@@ -12,7 +12,7 @@ const { features } = require("@saltcorn/data/db/state");
 const File = require("@saltcorn/data/models/file");
 const headers = [];
 const { compareSync, hashSync } = require("bcryptjs");
-
+const svgCaptcha = require("svg-captcha");
 module.exports = {
   sc_plugin_api_version: 1,
   plugin_name: "captcha",
@@ -39,11 +39,12 @@ module.exports = {
         SvgCaptcha: {
           isEdit: true,
           run: (nm, v, attrs, cls, required, field) => {
-            const n = Math.round(10000 * Math.random());
+            var captcha = svgCaptcha.create();
             return (
-              div(n) +
+              captcha.data +
               input({
-                type: "number",
+                type: "text",
+                class: "form-control w-unset",
                 name: text_attr(nm),
                 id: `input${text_attr(nm)}`,
               }) +
@@ -51,7 +52,7 @@ module.exports = {
                 type: "hidden",
                 name: text_attr(nm) + "__hash",
                 id: `input${text_attr(nm)}__hash`,
-                value: hashSync(`${n}`, 10),
+                value: hashSync(captcha.text, 10),
               })
             );
           },

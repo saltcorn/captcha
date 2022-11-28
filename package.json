@@ -6,7 +6,8 @@
   "dependencies": {
     "@saltcorn/data": "^0.7.0",
     "@saltcorn/markup": "^0.7.0",
-    "bcryptjs": "^2.4.3"
+    "bcryptjs": "^2.4.3",
+    "svg-captcha": "1.4.0"
   },
   "author": "Tom Nielsen",
   "license": "MIT",

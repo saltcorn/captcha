@@ -34,6 +34,7 @@ module.exports = {
           type: "String",
         },
       ],
+      skipAdminValidation: true,
       validate:
         ({ error_msg }) =>
         (x) => {

@@ -37,7 +37,7 @@ module.exports = {
       validate:
         ({ error_msg }) =>
         (x) => {
-          if (!x) return { error: error_msg };
+          if (!x) return { error: error_msg || "Incorrect captcha value" };
           else return true;
         },
       read: (v) => {

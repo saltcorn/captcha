@@ -1,6 +1,6 @@
 {
   "name": "@saltcorn/captcha",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Bot detection with Captchas",
   "main": "index.js",
   "dependencies": {

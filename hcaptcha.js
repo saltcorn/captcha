@@ -26,13 +26,15 @@ module.exports = {
     {
       name: "sitekey",
       label: "Sitekey",
-      sublabel: "HCaptcha site key",
+      sublabel: "hCaptcha site key",
+      required: true,
       type: "String",
     },
     {
       name: "secret",
       label: "Secret key",
-      sublabel: "HCaptcha account secret",
+      required: true,
+      sublabel: "hCaptcha account secret",
       type: "String",
     },
   ],
